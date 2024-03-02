@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row m-2">
+    <div class="col-md-10">
+<div class="card">
+  <div class="card-header">
+    이메일 인증 - 입력한 이메일로 받은 인증코드를 입력해 주세요.
+  </div>
+  
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <form method="post">
+        {% csrf_token %}
+        <label for="verification_code">인증 코드:</label>
+        <input type="text" id="verification_code" name="verification_code" required>
+        <button type="submit">인증</button>
+    </form>
+    
+      <footer class="blockquote-footer m-2">법률나라 <cite title="Source Title"> </cite></footer>
+
+    </blockquote>
+  </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-3">
+    <div class="row">
+    <form method="post" action="{% url 'common:signup' %}">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for field in form %}
+                {% if field.errors %}
+                <strong>{{ field.label }}</strong>
+                {{ field.errors }}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        
+
+<div class="input-group input-group-lg m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">아이디 :</span>
+  </div>
+  <input type="text" class="form-control" name="username" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="5글자 이상 입력해주세요">
+</div>
+
+
+<div class="input-group input-group-lg m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">비밀번호 :</span>
+  </div>
+  <input type="password" class="form-control" name="password1" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="영어소문자, 특수문자 포함 8글자이상">
+</div>
+
+
+<div class="input-group input-group-lg m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">비밀번호 확인 :</span>
+  </div>
+  <input type="password" class="form-control" name="password2" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="비밀번호를 다시 입력해 주세요">
+</div>
+
+<div class="input-group input-group-lg m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">종사하는 분야 :</span>
+  </div>
+  <select class="form-control" name="short_description" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    <option value="lawyer">법률가(변호사, 법무사, 노무사 등)</option>
+    <option value="doctor">의료계(의사, 한의사, 약사, 간호사 등)</option>
+    <option value="teacher">교육계(교수, 교사, 강사 등)</option>
+    <option value="student">학생(로스쿨, 법과대학, 행정대학 등)</option>
+    <option value="business">자영업(업종불문)</option>
+    <option value="salary man">회사원</option>
+    <option value="others">기타</option>
+    <option value="" disabled selected>종사하는 분야를 선택해주세요</option>
+    <!-- 다른 직업 옵션들도 필요에 따라 추가할 수 있습니다. -->
+  </select>
+ </div>
+
+<div class="input-group input-group-lg m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">이메일:</span>
+  </div>
+  <input type="email" class="form-control" name="email" maxlength="320" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="이메일 인증을 위해 필요합니다.">
+</div>
+
+</div>
+
+<div class="container">
+<div class="card">
+  <div class="card-header">
+    회원가입을 위해 아래 동의 내용을 버튼을 눌러 동의내용을 확인하고 동의해 주세요!
+  </div>
+  <div class="card-body">
+<div id="terms_content" style="display:none; max-height: 200px; overflow-y: auto;">
+    <!-- 여기에 약관 내용을 넣으세요 -->
+    <h2>동의 내용</h2>
+    <p>제1조</p>
+    <p>제2조</p>
+    이용약관
+제1조 (목적)
+
+이 약관은 로이너스 그룹이 운영하는 커뮤니티 사이트(이하 "로이너스"라 한다), 에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다) 및 정보를 이용함에 있어 로이너스 그룹과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+
+ 
+
+제2조 (계약의성립) 
+
+로이너스 서비스 이용약관은 로이너스 그룹과 로이너스 서비스를 이용하는 이용자 간에 체결된 계약으로, 이용자가 로이너스 회원으로 등록한 경우 본 이용약관에 동의한 것으로 간주됩니다.
+
+만일 본 이용약관에 동의하지 않으실 경우 회원으로 가입하지 않으시길 바랍니다.
+
+로이너스 서비스를 이용하는 것은 이용자가 본 이용약관을 읽고 이해했으며 이용약관에 동의함을 의미합니다.
+
+ 
+
+제3조 (정의)
+
+이 약관에서 사용하는 용어의 정의는 다음과 같으며, 그외의 용어는 개별 약관에 따릅니다. 
+
+① "로이너스"란 로이너스 그룹이 운영하는 인터넷 커뮤니티 사이트(www.lawinus.net)를 말합니다.
+
+② "회원"이라 함은 로이너스에 개인정보를 제공하여 회원으로 가입한 자로서, 로이너스의 정보를 지속적으로 받으며, 로이너스가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.
+
+③ "아이디"라 함은 서비스를 이용하기 위한 인터넷상의 열쇠로, 비밀번호와 함께 쓰이며, 회원 식별과 회원의 서비스 이용을 위하여 회원이 선정하고 로이너스 그룹이 승인하는 문자와 숫자의 조합을 말합니다.
+
+④ "비밀번호"라 함은 부여 받은 아이디의 회원임을 확인하여 회원 비밀을 보호 하기 위해, 회원 자신이 설정한 문자와 숫자의 조합을 말합니다.
+
+⑤ "운영자"라 함은 서비스의 전반적인 관리와 원활한 운영을 위하여 로이너스 그룹에서 선정한 사람 을 말합니다.
+
+⑥ "탈퇴"라 함은 로이너스 그룹 또는 회원이 서비스 이용 후 이용계약을 해약하는 것 을 말합니다.
+
+⑦ "이용자"란 로이너스에 접속하거나 사이트를 방문하여 이 약관에 따라 로이너스 그룹이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.
+
+⑧ "비회원"이라 함은 회원에 가입하지 않고, 로이너스가 제공하는 서비스를 이용하는 자를 말합니다.
+
+⑨ 본 약관에서 정의하지 않은 용어는 개별서비스에 대한 별도 약관 및 이용규정에서 정의 합니다.
+
+ 
+
+제4조 (약관등의 명시와 설명 및 개정)
+
+① "로이너스 그룹"은 이 약관의 내용과 로이너스 그룹의 연락처를 이용자가 알 수 있도록 로이너스 사이트 또는 초기 서비스화면(전면)에 게시합니다.
+
+② "로이너스 그룹"은 약관의 규제등에 관한 법률, 전자거래기본법, 전자서명법, 정보통신망이용촉진등에 관한 법률, 소비자보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다. 
+
+③ "로이너스 그룹"이 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 "로이너스" 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다. 
+
+④ "로이너스 그룹"이 약관을 개정할 경우에는 그 개정약관은 그 적용일자 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정전의 약관조항이 그대로 적용됩니다. 다만 이미 계약을 체결한 이용자가 개정약관 조항의 적용을 받기를 원하는 뜻을 제3항에 의한 개정약관의 공지기간 내에 "로이너스 그룹"에 송신하여 "로이너스 그룹"의 동의를 받은 경우에는 개정약관 조항이 적용됩니다. 
+
+⑤ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래등에서의 소비자 보호에 관한 법률, 약관의 규제등에 관한 법률, 공정거래위원회가 정하는 전자거래등에서의 소비자보호지침 및 관계법령 또는 상관례에 따릅니다.
+
+ 
+
+제5조(서비스의 제공 및 변경) 
+
+① "로이너스 그룹"은 로이너스 사이트 통해 다음과 같은 업무를 수행합니다.
+
+1. 지금은 모든 서비스가 무료로 운영되고 있지만, 추후 유료 서비스 등을 제공할 경우에는 결제 수단을 제공합니다.
+
+2. 기타 로이너스 그룹이 정하는 업무
+
+② "로이너스 그룹"은 기술적 사양의 변경 등의 경우에는 장차 체결되는 계약에 의해 제공할 서비스 내용을 변경할 수 있고, 이를 회원들에게 고지할 의무가 있습니다. 단, 로이너스 그룹은 불가피한 여건이나 사정이 발생할 경우에 위의 공지를 하지 않을 수 있습니다.
+
+③ "로이너스 그룹"이 제공하기로 이용자와 계약을 체결한 서비스의 내용을 서비스의 기술적 사양의 변경 등의 사유로 변경할 경우에는 그 사유를 이용자에게 통지 가능한 수단으로 즉시 통지 합니다. 
+
+④ "로이너스 그룹"은 전항의 경우 이로 인하여 이용자기 입은 손해를 배상 합니다. 다만, "로이너스 그룹"이 고의 또는 과실이 없음을 입증하는 경우에는 그러지 아니합니다.
+
+⑤ "서비스"는 로이너스 그룹의 업무상, 기술상의 장애 등 특별한 사유가 없는 한 연중무휴, 1일 24시간 이용할 수 있습니다. 다만 설비의 점검 등 로이너스 그룹이 필요한 경우 또는 설비의 장애, 서비스 이용의 폭주 등 불가항력으로 인하여 서비스 이용에 지장이 있는 경우 예외적으로 서비스 이용의 전부 또는 일부에 대하여 제한할 수 있습니다.
+    </div>
+    <br/>
+
+    
+    <label for="id_agree_to_terms" id="agree_to_terms_label" style="display:none;"> <h5>위 동의 내용을 확인하고, 확인후 동의하신다면 아래 <strong>체크박스</strong>를 체크해 주세요. 동의하지 않으면 회원가입이 되지 않습니다.</h5></label>
+
+    
+      <input type="checkbox" name="agree_to_terms" id="id_agree_to_terms" style="display:none;" required> 
+      <label for="id_agree_to_terms" id="agree_to_terms_label2" style="display:none;">위 동의 내용에 동의합니다.</label>
+
+<style>
+/* 체크 박스 스타일 */
+#id_agree_to_terms {
+    width: 30px; /* 체크 박스의 너비 */
+    height: 30px; /* 체크 박스의 높이 */
+   
+}
+
+/* 체크 박스의 체크 상태 스타일 */
+.custom-checkbox:checked {
+    background-color: #007bff; /* 체크 박스의 체크된 배경 색상 */
+    border-color: #007bff; /* 체크 박스의 체크된 테두리 색상 */
+}
+</style>
+
+    <button onclick="showTermsCheckbox()" class="btn btn-success" id="id_agree_button">동의 내용 확인</button>
+
+    <button type="submit" class="btn btn-lg btn btn-primary mt-5" style="display:none;" id="signupbutton" disabled>회원가입</button>
+</div> <!--card에 관한 것-->
+</div> <!--card-body에 관한 것-->
+</div> <!--container에 관한 것-->
+
+    </form>
+</div>
+
+<script>
+function showTermsCheckbox() {
+    var termsContent = document.getElementById("terms_content");
+    var agreeCheckbox = document.getElementById("id_agree_to_terms");
+    var agreeLabel = document.getElementById("agree_to_terms_label");
+    var agreeLabel2 = document.getElementById("agree_to_terms_label2");
+    var agreeButton = document.getElementById("id_agree_button");
+    var signupButton = document.getElementById("signupbutton");
+
+    termsContent.style.display = "block";
+    agreeCheckbox.style.display = "block";
+    agreeLabel.style.display = "block";
+    agreeLabel2.style.display = "block";
+    agreeButton.style.display = "none";
+    signupButton.style.display = "block";
+
+    // 스크롤 이벤트 추가
+    termsContent.addEventListener('scroll', function() {
+        if (agreeCheckbox.checked && isTermsScrolledToBottom()) {
+            signupButton.disabled = false;
+        } 
+    });
+
+    // 체크 박스 상태 변화 감지
+    agreeCheckbox.addEventListener('change', function() {
+    if (agreeCheckbox.checked && isTermsScrolledToBottom()) {
+        signupButton.disabled = false;
+    } else {
+        signupButton.disabled = true; // 체크박스가 해제되면 버튼 비활성화
+    }
+});
+}
+
+function isTermsScrolledToBottom() {
+    var termsContent = document.getElementById("terms_content");
+    return termsContent.scrollHeight - termsContent.clientHeight <= termsContent.scrollTop + 1;
+}
+    </script>
+
+{% endblock %}

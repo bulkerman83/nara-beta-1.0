@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+  <div class="row m-2">
+    <div class="col-md-10">
+<div class="card">
+  <div class="card-header">
+    아이디 찾기 
+  </div>
+  
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+    {% if username %}
+        ID : {{ username }}
+    {% elif error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    
+      <footer class="blockquote-footer m-2">법률나라 <cite title="Source Title"> </cite></footer>
+
+    </blockquote>
+  </div>
+
+
+{% endblock %}

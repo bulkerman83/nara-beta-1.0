@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-3">
+    <form method="post" action="{% url 'common:login' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% include "form_errors.html" %}
+
+    <div class="row">
+        <div class="col-6">
+
+        <div class="input-group input-group-lg m-5">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">아이디 :</span>
+            </div>
+            <input type="text" class="form-control" name="username" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="{{username}}">
+        </div>
+
+        
+
+        <div class="input-group input-group-lg m-5">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-lg">비밀번호 :</span>
+            </div>
+            <input type="password" class="form-control" name="password" required aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        </div>
+
+    
+        </div> <!--col에 관한 것-->
+    
+
+
+
+        <div class="col-6">
+        </div>
+
+    </div> <!--row에 관한 것 -->
+
+    <div class="row">
+        <div class="col-1">
+
+            
+
+        </div>
+
+        <div class="col-11">
+            <input type="checkbox" name="remember_me" {% if remember_me_checked == 'checked' %}checked{% endif %}> 아이디 저장
+        </div>
+
+    </div>
+
+        <div class="row">
+            <div class="col-5">
+            
+            </div>
+
+            <div class="col-7">
+              <button type="submit" class="btn btn-lg btn btn-primary">로그인</button> 
+            </div>
+
+        </div><!--row에 관한 것 -->
+    </form>
+</div> <!--container에 관한 것 -->
+{% endblock %}
